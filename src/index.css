@@ -8,7 +8,7 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-50 antialiased;
+    @apply bg-slate-950 text-slate-50 antialiased transition-colors duration-300;
   }
 }
 
@@ -19,3 +19,237 @@
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400;
 }
+
+/* ==========================================================================
+   Light Mode Overrides
+   ========================================================================== */
+
+/* Base overrides */
+html.light,
+html.light body {
+  background-color: #f8fafc !important; /* bg-slate-50 */
+  color: #1e293b !important; /* slate-800 */
+}
+
+/* Typography styles */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6,
+html.light .text-white,
+html.light .font-bold.text-slate-100 {
+  color: #0f172a !important; /* slate-900 */
+}
+
+html.light p,
+html.light .text-slate-300,
+html.light .text-slate-400 {
+  color: #334155 !important; /* slate-700 */
+}
+
+html.light .text-slate-500 {
+  color: #64748b !important; /* slate-500 */
+}
+
+html.light .text-slate-600 {
+  color: #475569 !important; /* slate-600 */
+}
+
+/* Retain clear and rich highlights */
+html.light .text-blue-400 {
+  color: #2563eb !important; /* blue-600 */
+}
+html.light .text-blue-300 {
+  color: #1d4ed8 !important; /* blue-700 */
+}
+html.light .text-blue-200 {
+  color: #1e40af !important; /* blue-800 */
+}
+html.light .text-emerald-400 {
+  color: #059669 !important; /* emerald-600 */
+}
+
+/* Maintain light theme gradients with good visibility */
+html.light .text-gradient {
+  background-image: linear-gradient(to right, #1d4ed8, #059669) !important;
+}
+
+/* Section overrides */
+html.light #services,
+html.light #portfolio,
+html.light .bg-slate-900\/50,
+html.light .bg-slate-900\/35,
+html.light .bg-slate-900\/30 {
+  background-color: #f1f5f9 !important; /* slate-100 */
+  border-color: rgba(15, 23, 42, 0.06) !important;
+}
+
+html.light .bg-slate-950,
+html.light .bg-slate-900 {
+  background-color: #f8fafc !important; /* slate-50 */
+}
+
+html.light .border-white\/5,
+html.light .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Glass element styles in light mode */
+html.light nav.glass,
+html.light .glass {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(24px) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 8px -1px rgba(15, 23, 42, 0.03) !important;
+}
+
+/* Glass element text overrides */
+html.light nav.glass span,
+html.light nav.glass a,
+html.light .glass span,
+html.light .glass a,
+html.light .glass h3 {
+  color: #0f172a !important;
+}
+
+html.light nav.glass a:hover,
+html.light .glass a:hover {
+  color: #2563eb !important;
+}
+
+/* Specifically for hover inside the glass background */
+html.light .group-hover\:bg-white\/10:hover, 
+html.light .hover\:bg-white\/10:hover,
+html.light .hover\:bg-white\/5:hover,
+html.light .hover\:bg-white\/5 {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .glass.hover\:bg-white\/10:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Service Card icons container bg */
+html.light .bg-slate-800 {
+  background-color: #e2e8f0 !important; /* slate-200 */
+}
+
+/* Forms (Contact Form settings) */
+html.light input,
+html.light textarea,
+html.light select,
+html.light .bg-slate-800 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light input:focus,
+html.light textarea:focus,
+html.light select:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 1px #2563eb !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Contact sidebar styling - keep white typography for solid blue brand area */
+html.light .lg\:w-1\/3.bg-blue-600,
+html.light .bg-blue-600 {
+  color: #ffffff !important;
+}
+html.light .lg\:w-1\/3.bg-blue-600 h2,
+html.light .lg\:w-1\/3.bg-blue-600 p,
+html.light .lg\:w-1\/3.bg-blue-600 div,
+html.light .lg\:w-1\/3.bg-blue-600 span {
+  color: #ffffff !important;
+}
+html.light .lg\:w-1\/3.bg-blue-600 .text-blue-100 {
+  color: #eff6ff !important;
+}
+html.light .lg\:w-1\/3.bg-blue-600 .text-blue-200 {
+  color: #dbeafe !important;
+}
+
+/* Chatbot panel container and messages */
+html.light .glass.w-\[calc\(100vw-2rem\)\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .bg-slate-800.text-slate-200 {
+  background-color: #f1f5f9 !important;
+  color: #1e293b !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .chat-input-container {
+  background-color: #f8fafc !important;
+  border-top-color: #cbd5e1 !important;
+}
+
+html.light .w-14.h-14.bg-slate-800 {
+  background-color: #e2e8f0 !important;
+}
+
+html.light .w-14.h-14.bg-slate-800 svg {
+  color: #1e293b !important;
+}
+
+/* WhatsApp expert button and customized widgets */
+html.light .glass.border-emerald-500 {
+  border-color: #10b981 !important;
+  color: #065f46 !important;
+  background-color: #ffffff !important;
+}
+html.light .glass.border-emerald-500:hover {
+  background-color: rgba(16, 185, 129, 0.08) !important;
+}
+html.light .glass.border-emerald-500 svg {
+  color: #10b981 !important;
+}
+
+/* Privacy policy lists */
+html.light .bg-white\/5.p-3 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light .bg-blue-600\/10 {
+  background-color: rgba(37, 99, 235, 0.08) !important;
+  border-color: rgba(37, 99, 235, 0.2) !important;
+}
+
+html.light .bg-blue-600\/10 p {
+  color: #1d4ed8 !important;
+}
+
+/* Navigation overrides for header links */
+html.light .text-slate-300 {
+  color: #475569 !important;
+}
+
+html.light .text-slate-300:hover {
+  color: #0f172a !important;
+}
+
+/* Mobile dropdown menu backblur container */
+html.light .md\:hidden.glass {
+  background-color: rgb(255, 255, 255) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .md\:hidden.glass a {
+  color: #334155 !important;
+}
+
+html.light .md\:hidden.glass a:hover {
+  color: #2563eb !important;
+}
+
