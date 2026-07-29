@@ -238,18 +238,49 @@ html.light .text-slate-300:hover {
   color: #0f172a !important;
 }
 
-/* Mobile dropdown menu backblur container */
-html.light .md\:hidden.glass {
-  background-color: rgb(255, 255, 255) !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
-  border-color: rgba(15, 23, 42, 0.08) !important;
+/* Active top Navbar styling */
+.navbar-active {
+  background-color: rgba(2, 6, 23, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-html.light .md\:hidden.glass a {
+html.light .navbar-active {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Mobile dropdown menu solid container - eliminates see-through clutter on scroll */
+.mobile-dropdown-panel {
+  background-color: #0f172a !important; /* solid slate-900 */
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+}
+
+.mobile-dropdown-panel a {
+  color: #cbd5e1 !important;
+}
+
+.mobile-dropdown-panel a:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.light .mobile-dropdown-panel {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15) !important;
+}
+
+html.light .mobile-dropdown-panel a {
   color: #334155 !important;
 }
 
-html.light .md\:hidden.glass a:hover {
+html.light .mobile-dropdown-panel a:hover {
   color: #2563eb !important;
+  background-color: rgba(15, 23, 42, 0.05) !important;
 }
 
