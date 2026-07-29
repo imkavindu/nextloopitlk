@@ -111,6 +111,17 @@ const Navbar = ({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleTheme: 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on window resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (location.pathname !== '/') {
       e.preventDefault();
@@ -120,111 +131,132 @@ const Navbar = ({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleTheme: 
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-4' : 'bg-transparent py-6'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        <Link 
-          to="/"
-          className="flex items-center gap-2 cursor-pointer"
-        >
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-lg flex items-center justify-center">
-            <Code2 className="text-white w-6 h-6" />
-          </div>
-          <span className="text-2xl font-display font-bold tracking-tight text-slate-100">NextLoop<span className="text-blue-400">IT</span></span>
-        </Link>
-
-        <div className="hidden md:flex items-center gap-8">
-          {['Services', 'Portfolio', 'About', 'Contact'].map((item) => (
-            <a 
-              key={item} 
-              href={`#${item.toLowerCase()}`} 
-              className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
-              onClick={(e) => handleNavClick(e, `#${item.toLowerCase()}`)}
-            >
-              {item}
-            </a>
-          ))}
-          
-          {/* Theme Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            className="w-10 h-10 flex items-center justify-center rounded-full glass hover:bg-white/10 transition-all border border-white/10 relative"
-            aria-label="Toggle visual theme"
-          >
-            {theme === 'dark' ? (
-              <Sun className="w-5 h-5 text-amber-400" />
-            ) : (
-              <Moon className="w-5 h-5 text-indigo-600" />
-            )}
-          </button>
-
-          <a 
-            href="#contact" 
-            className="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-md hover:shadow-lg shadow-blue-500/10 active:scale-95"
-            onClick={(e) => handleNavClick(e, '#contact')}
-          >
-            Get a Free Quote
-          </a>
-        </div>
-
-        <div className="flex items-center gap-3 md:hidden">
-          {/* Theme Toggle (Mobile) */}
-          <button
-            onClick={toggleTheme}
-            className="w-10 h-10 flex items-center justify-center rounded-lg glass hover:bg-white/5 transition-colors focus:outline-none"
-            aria-label="Toggle Theme"
-          >
-            {theme === 'dark' ? (
-              <Sun className="w-5 h-5 text-amber-400" />
-            ) : (
-              <Moon className="w-5 h-5 text-indigo-600" />
-            )}
-          </button>
-
-          <button 
-            className="text-white w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors focus:outline-none" 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle navigation menu"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </div>
-
+    <>
+      {/* Mobile backdrop overlay to prevent background confusion */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-4 right-4 mt-2 glass p-6 flex flex-col gap-4 md:hidden rounded-2xl shadow-2xl bg-slate-950/95 border border-white/10 [backdrop-filter:blur(24px)] z-[100]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-slate-950/75 light:bg-slate-900/40 backdrop-blur-sm z-40 md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled || isMobileMenuOpen ? 'navbar-active py-4' : 'bg-transparent py-6'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+          <Link 
+            to="/"
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-lg flex items-center justify-center">
+              <Code2 className="text-white w-6 h-6" />
+            </div>
+            <span className="text-2xl font-display font-bold tracking-tight text-slate-100">NextLoop<span className="text-blue-400">IT</span></span>
+          </Link>
+
+          <div className="hidden md:flex items-center gap-8">
             {['Services', 'Portfolio', 'About', 'Contact'].map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`} 
-                className="text-lg font-medium text-slate-300 py-1 hover:text-white transition-colors"
-                onClick={(e) => {
-                  setIsMobileMenuOpen(false);
-                  handleNavClick(e, `#${item.toLowerCase()}`);
-                }}
+                className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                onClick={(e) => handleNavClick(e, `#${item.toLowerCase()}`)}
               >
                 {item}
               </a>
             ))}
+            
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="w-10 h-10 flex items-center justify-center rounded-full glass hover:bg-white/10 transition-all border border-white/10 relative"
+              aria-label="Toggle visual theme"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-5 h-5 text-amber-400" />
+              ) : (
+                <Moon className="w-5 h-5 text-indigo-600" />
+              )}
+            </button>
+
             <a 
               href="#contact" 
-              className="bg-blue-600 text-white py-3 rounded-xl text-center font-bold mt-2 shadow-lg shadow-blue-500/20 active:scale-[0.98] transition-transform"
-              onClick={(e) => {
-                setIsMobileMenuOpen(false);
-                handleNavClick(e, '#contact');
-              }}
+              className="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-md hover:shadow-lg shadow-blue-500/10 active:scale-95"
+              onClick={(e) => handleNavClick(e, '#contact')}
             >
-              Get Started
+              Get a Free Quote
             </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+          </div>
+
+          <div className="flex items-center gap-3 md:hidden">
+            {/* Theme Toggle (Mobile) */}
+            <button
+              onClick={toggleTheme}
+              className="w-10 h-10 flex items-center justify-center rounded-lg glass hover:bg-white/5 transition-colors focus:outline-none"
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-5 h-5 text-amber-400" />
+              ) : (
+                <Moon className="w-5 h-5 text-indigo-600" />
+              )}
+            </button>
+
+            <button 
+              className="text-white w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors focus:outline-none" 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -12, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12, scale: 0.98 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="absolute top-full left-4 right-4 mt-2 p-5 flex flex-col gap-3 md:hidden rounded-2xl mobile-dropdown-panel z-50 max-h-[80vh] overflow-y-auto"
+            >
+              {['Services', 'Portfolio', 'About', 'Contact'].map((item) => (
+                <a 
+                  key={item} 
+                  href={`#${item.toLowerCase()}`} 
+                  className="text-base font-semibold py-3 px-4 rounded-xl transition-all flex items-center justify-between"
+                  onClick={(e) => {
+                    setIsMobileMenuOpen(false);
+                    handleNavClick(e, `#${item.toLowerCase()}`);
+                  }}
+                >
+                  <span>{item}</span>
+                  <ArrowRight className="w-4 h-4 opacity-70" />
+                </a>
+              ))}
+              <a 
+                href="#contact" 
+                className="bg-blue-600 hover:bg-blue-500 text-white py-3.5 px-4 rounded-xl text-center font-bold mt-2 shadow-lg shadow-blue-600/25 active:scale-[0.98] transition-all"
+                onClick={(e) => {
+                  setIsMobileMenuOpen(false);
+                  handleNavClick(e, '#contact');
+                }}
+              >
+                Get a Free Quote
+              </a>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </>
   );
 };
 
