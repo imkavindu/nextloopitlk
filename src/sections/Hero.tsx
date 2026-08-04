@@ -1,4 +1,5 @@
-import { ArrowRight, MessageSquare, Sparkles } from 'lucide-react';
+import { ArrowRight, MessageSquare } from 'lucide-react';
+
 import { useGsapContext } from '../hooks/useGsap';
 import { useMagnetic } from '../hooks/useInteractions';
 import { gsap, EASE, prefersReducedMotion } from '../lib/gsap';
@@ -30,14 +31,11 @@ export const Hero = () => {
 
     const tl = gsap.timeline({ defaults: { ease: EASE.expo } });
 
-    tl.from('[data-hero-badge]', { opacity: 0, y: 20, scale: 0.9, duration: 0.7, ease: EASE.out })
-      // Headline words rise out of their masks
-      .from(
-        '[data-word]',
-        { yPercent: 115, opacity: 0, duration: 1, stagger: 0.035 },
-        '-=0.35'
-      )
+    // Headline words rise out of their masks — now the first beat of the
+    // timeline, so no negative offset here.
+    tl.from('[data-word]', { yPercent: 115, opacity: 0, duration: 1, stagger: 0.035 })
       .from('[data-hero-kicker]', { opacity: 0, y: 20, duration: 0.7, ease: EASE.out }, '-=0.6')
+
       .from('[data-hero-sub]', { opacity: 0, y: 24, duration: 0.8, ease: EASE.out }, '-=0.5')
       .from(
         '[data-hero-cta]',
@@ -79,15 +77,8 @@ export const Hero = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center w-full">
         <div data-hero-content>
-          <span
-            data-hero-badge
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-cyan-300 mb-7"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            Launching • April 6, 2026
-          </span>
-
           <h1 className="text-[2rem] leading-[1.12] sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight mb-6 text-white max-w-5xl mx-auto">
+
             <SplitWords text="Your Website Is Either A" />
             <br className="hidden sm:inline" />
             <SplitWords text="Profit Center Or A Cost Center." className="text-gradient text-glow" />
