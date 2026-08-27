@@ -67,10 +67,10 @@ export default function App() {
       {/* Background WebGL layer — behind everything, never interactive. */}
       <LiquidCanvas />
 
-      <div className="min-h-screen font-sans selection:bg-blue-500/30 overflow-x-hidden">
+      <div className="min-h-screen flex flex-col selection:bg-blue-500/30 relative z-10">
         <Navbar />
 
-        <main>
+        <main className="flex-1 w-full relative z-10">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

@@ -47,14 +47,24 @@ export const projects = [
     cta: 'View Case Study',
   },
   {
-    title: 'BizFlow',
-    category: 'Revenue Protection AI',
+    title: 'OmniDesk',
+    category: 'Autonomous Commerce Engine',
     image:
-      'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
     description:
-      'Stopping profit leaks in real-time. This AI-driven system detects fraudulent orders before they hit the shipping floor, saving businesses millions in lost delivery costs.',
-    link: 'https://bizflow.vercel.app/',
-    cta: 'See How It Works',
+      'Stop losing 25%+ of margins to refused Cash-on-Delivery orders. Screen phone numbers with ML fraud intelligence, dispatch via Trans Express, Koombiyo & Domex with 1-click, and auto-balance live stock.',
+    link: 'https://omnidesksl.vercel.app',
+    cta: 'Visit OmniDesk',
+  },
+  {
+    title: 'Xeviocard.com',
+    category: 'NFC Digital Hardware & Commerce',
+    image:
+      'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+    description:
+      'Next-generation smart NFC business cards and custom digital profile design platform with seamless online purchasing and profile management.',
+    link: 'https://xeviocard.com',
+    cta: 'Visit Xeviocard',
   },
   {
     title: 'ChatLoop',

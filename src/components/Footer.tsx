@@ -18,7 +18,10 @@ export const Footer = () => {
   const scope = useRevealOnScroll<HTMLElement>({ y: 26, stagger: 0.1 });
 
   return (
-    <footer ref={scope} className="relative pt-16 pb-12 border-t border-white/5 overflow-hidden">
+    <footer
+      ref={scope}
+      className="w-full relative z-20 border-t border-white/10 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 mt-16 overflow-visible"
+    >
       <div className="absolute inset-x-0 top-0 hairline" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
