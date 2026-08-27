@@ -42,23 +42,19 @@ export const AuroraBackground = ({ variant = 'hero' }: { variant?: 'hero' | 'sec
   const isHero = variant === 'hero';
 
   return (
-    <div ref={scope} aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
+    <div ref={scope} aria-hidden className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
       <div
-        className="orb bg-blue-600/25"
+        className="orb bg-blue-600/10"
         style={{
-          width: isHero ? '46%' : '38%',
-          height: isHero ? '46%' : '38%',
-          top: '-8%',
-          left: '-8%',
+          width: isHero ? '40%' : '30%',
+          height: isHero ? '40%' : '30%',
+          top: '-10%',
+          left: '30%',
         }}
       />
       <div
-        className="orb bg-cyan-500/20"
-        style={{ width: '34%', height: '34%', top: '20%', right: '-6%' }}
-      />
-      <div
-        className="orb bg-emerald-500/20"
-        style={{ width: '40%', height: '40%', bottom: '-12%', left: '25%' }}
+        className="orb bg-cyan-500/05"
+        style={{ width: '25%', height: '25%', top: '15%', right: '10%' }}
       />
     </div>
   );

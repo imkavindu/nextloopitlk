@@ -157,9 +157,9 @@ export function createLiquidMaterial() {
     uFrequency: { value: 1.15 },
     uPointer: { value: new THREE.Vector2(0, 0) },
     // Brand ramp: blue -> cyan -> emerald.
-    uColorA: { value: new THREE.Color('#1d4ed8') },
-    uColorB: { value: new THREE.Color('#22d3ee') },
-    uColorC: { value: new THREE.Color('#34d399') },
+    uColorA: { value: new THREE.Color('#1e40af') },
+    uColorB: { value: new THREE.Color('#0284c7') },
+    uColorC: { value: new THREE.Color('#1e293b') },
     uOpacity: { value: 0.9 },
   };
 
