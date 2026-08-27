@@ -20,7 +20,7 @@ export const Footer = () => {
   return (
     <footer
       ref={scope}
-      className="w-full relative z-20 border-t border-white/10 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 mt-16 overflow-visible"
+      className="w-full relative z-30 border-t border-white/10 py-12 px-4 sm:px-6 lg:px-8 mt-16 overflow-visible bg-[#030712]"
     >
       <div className="absolute inset-x-0 top-0 hairline" />
 

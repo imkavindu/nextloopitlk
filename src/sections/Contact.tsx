@@ -81,7 +81,7 @@ export const Contact = () => {
   };
 
   return (
-    <section ref={scope} id="contact" className="relative py-20 sm:py-28">
+    <section ref={scope} id="contact" className="relative py-20 sm:py-28 pb-24 lg:pb-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div
           data-contact-panel

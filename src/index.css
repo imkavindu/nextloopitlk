@@ -21,6 +21,9 @@
 html {
   /* Lenis owns scrolling; native smooth behaviour would fight it. */
   background-color: var(--color-void);
+  height: auto;
+  min-height: 100%;
+  scroll-behavior: auto;
 }
 
 /* Lenis sets these while it is driving the page. */
@@ -41,11 +44,13 @@ html.lenis body {
   overflow: hidden;
 }
 
-
 body {
   @apply text-slate-200 antialiased;
   background-color: var(--color-void);
+  min-height: 100vh;
   overflow-x: hidden;
+  overflow-y: auto !important;
+  position: relative;
 }
 
 /* Ambient grid + aurora that sits behind everything */
