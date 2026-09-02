@@ -67,6 +67,16 @@ export const projects = [
     cta: 'Visit Xeviocard',
   },
   {
+    title: 'SalonSync',
+    category: 'Multi-Tenant SaaS Platform',
+    image:
+      'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80',
+    description:
+      'All-in-one multi-tenant appointment scheduling and client management system for salons and spas. Automates booking pipelines, stylist dispatch, real-time calendar synchronization, and SMS reminders.',
+    link: 'https://salonsync-three.vercel.app/',
+    cta: 'Visit SalonSync',
+  },
+  {
     title: 'ChatLoop',
     category: 'Conversational AI Suite',
     isComingSoon: true,
